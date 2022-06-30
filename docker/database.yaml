@@ -1,0 +1,45 @@
+version: "3"
+
+networks:
+  passport:
+
+volumes:
+  passport-db-data:
+  passport-redis-data:
+
+services:
+  passport-db:
+    image: bitnami/mariadb:10.6
+    container_name: passport-db
+    environment:
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=development
+      - MARIADB_USER=passport
+      - MARIADB_PASSWORD=development
+      - MARIADB_DATABASE=passport
+      - MARIADB_SKIP_TEST_DB=yes
+    volumes:
+      - passport-db-data:/bitnami/mariadb
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    networks:
+      - passport
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      interval: 2s
+      timeout: 20s
+      retries: 10
+
+  passport-redis:
+    image: bitnami/redis:latest
+    container_name: passport-redis
+    volumes:
+      - passport-redis-data:/bitnami/redis/data
+    restart: unless-stopped
+    environment:
+      - REDIS_PASSWORD=development
+    ports:
+      - "6379:6379"
+    networks:
+      - passport

@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.math.BigInteger;
 
-public interface UserAuthorityRepository extends CrudRepository<Authority, BigInteger> {
+public interface AuthorityRepository extends CrudRepository<Authority, BigInteger> {
 }

@@ -1,6 +1,6 @@
 package io.github.tuyendev.passport.configurer;
 
-import io.github.tuyendev.passport.repository.UserAuthorityRepository;
+import io.github.tuyendev.passport.repository.AuthorityRepository;
 import io.github.tuyendev.passport.repository.UserRepository;
 import io.github.tuyendev.passport.utils.PasswordUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -42,12 +42,12 @@ public class BootstrapDataConfigurer {
 
     private final UserRepository userRepo;
 
-    private final UserAuthorityRepository userAuthorityRepo;
+    private final AuthorityRepository userAuthorityRepo;
 
     public BootstrapDataConfigurer(@Value("${app.default.client-id}") String defaultClientId,
                                    @Value("${app.default.admin-user}") String defaultAdminUser,
                                    RegisteredClientRepository registeredClientRepo,
-                                   PasswordEncoder passwordEncoder, UserRepository userRepo, UserAuthorityRepository userAuthorityRepo) {
+                                   PasswordEncoder passwordEncoder, UserRepository userRepo, AuthorityRepository userAuthorityRepo) {
         this.defaultClientId = defaultClientId;
         this.defaultAdminUser = defaultAdminUser;
         this.registeredClientRepo = registeredClientRepo;

@@ -1,7 +1,7 @@
 package io.github.tuyendev.passport.configurer;
 
 import io.github.tuyendev.passport.entity.User;
-import io.github.tuyendev.passport.repository.UserAuthorityRepository;
+import io.github.tuyendev.passport.repository.AuthorityRepository;
 import io.github.tuyendev.passport.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,9 +15,9 @@ public class JpaUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepo;
 
-    private final UserAuthorityRepository userAuthorityRepo;
+    private final AuthorityRepository userAuthorityRepo;
 
-    public JpaUserDetailsService(UserRepository userRepo, UserAuthorityRepository userAuthorityRepo) {
+    public JpaUserDetailsService(UserRepository userRepo, AuthorityRepository userAuthorityRepo) {
         this.userRepo = userRepo;
         this.userAuthorityRepo = userAuthorityRepo;
     }

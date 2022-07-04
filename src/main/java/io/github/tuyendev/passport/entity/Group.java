@@ -4,7 +4,7 @@ import io.github.tuyendev.passport.entity.jpa.AbstractPersistable;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "groups")
@@ -27,11 +27,9 @@ public class Group extends AbstractPersistable<String, Long> {
     @Column(name = "email", length = 80)
     private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "groups")
-    private Collection<User> users;
+    private Integer status;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "groups")
+    private Set<User> users;
+
 }

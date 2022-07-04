@@ -1,5 +1,7 @@
 package io.github.tuyendev.passport.configurer;
 
+import io.github.tuyendev.passport.repository.UserRepository;
+import io.github.tuyendev.passport.security.JpaUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,12 +20,6 @@ public class AuthenticationProviderConfigurer {
 
     public static final String BEAN_ID = "Passport@AuthenticationProviderConfigurer@000";
 
-    private final JpaUserDetailsService userDetailsService;
-
-    public AuthenticationProviderConfigurer(JpaUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
-
     @Bean
     PasswordEncoder passwordEncoder() {
         Map<String, PasswordEncoder> encoders = new HashMap<>();
@@ -35,7 +31,7 @@ public class AuthenticationProviderConfigurer {
     }
 
     @Bean
-    UserDetailsService userDetailsService() {
-        return this.userDetailsService;
+    UserDetailsService userDetailsService(UserRepository userRepo) {
+        return new JpaUserDetailsService(userRepo);
     }
 }

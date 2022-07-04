@@ -38,9 +38,9 @@ public class DefaultWebSecurityConfigurer {
                         .defaultSuccessUrl("/"))
                 .logout().deleteCookies("JSESSIONID")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout");
-//                .and()
-//                .rememberMe().key(rememberMeKey).tokenValiditySeconds(86400);
+                .logoutSuccessUrl("/login?logout")
+                .and()
+                .rememberMe().key(rememberMeKey).tokenValiditySeconds(86400);
         return http.build();
     }
 

@@ -33,6 +33,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Configuration
 @DependsOn(value = {AuthorizationServiceConfigurer.BEAN_ID,
@@ -91,9 +92,10 @@ public class BootstrapDataConfigurer {
     @Transactional
     public void init() {
         initialDefaultClient();
+        initialDefaultAuthorities();
         initialDefaultAdminRole();
+        initialDefaultMemberRole();
         initialDefaultAdminUser();
-        initialRoleHierarchy();
     }
 
     private void initialDefaultClient() {
@@ -121,7 +123,6 @@ public class BootstrapDataConfigurer {
     }
 
     private void initialDefaultAdminRole() {
-        initialDefaultAuthorities();
         Optional<Role> adminRole = roleRepo.getAdmin();
         if (adminRole.isPresent()) {
             log.debug("Default admin role is created");
@@ -134,9 +135,31 @@ public class BootstrapDataConfigurer {
                 .status(Status.ACTIVE)
                 .authorities(authorities)
                 .build();
-        authorities.forEach(authority -> authority.setRoles(Set.of(admin)));
         roleRepo.save(admin);
         log.debug("Success initial admin role");
+    }
+
+    private void initialDefaultMemberRole() {
+        Optional<Role> memberRole = roleRepo.findActiveRoleByName(Role.MEMBER_ROLE);
+        if (memberRole.isPresent()) {
+            log.debug("Default member role is created");
+            return;
+        }
+
+        Role admin = roleRepo.getAdmin()
+                .orElseThrow(() -> new NotFoundEntityException("Admin should be presented"));
+        Set<Authority> authorities = authorityRepo.findAllActiveAuthorities()
+                .stream().filter(authority -> authority.getName().equals(Authority.READ) || authority.getName().equals(Authority.WRITE))
+                .collect(Collectors.toSet());
+        Role member = Role.builder()
+                .name(Role.MEMBER_ROLE)
+                .parent(admin)
+                .description("Member")
+                .status(Status.ACTIVE)
+                .authorities(authorities)
+                .build();
+        roleRepo.save(member);
+        log.debug("Success initial member role");
     }
 
     private void initialDefaultAuthorities() {
@@ -183,13 +206,8 @@ public class BootstrapDataConfigurer {
                 .accLocked(false)
                 .roles(Set.of(adminRole))
                 .build();
-        adminRole.setUsers(Set.of(user));
         userRepo.save(user);
         log.debug("Success initial default app admin");
-    }
-
-    private void initialRoleHierarchy() {
-        Set<Role> roles = roleRepo.findAllActiveRoles();
     }
 
 }

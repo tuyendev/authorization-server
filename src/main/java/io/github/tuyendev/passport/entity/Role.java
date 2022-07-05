@@ -17,6 +17,10 @@ public class Role extends AbstractPersistable<String, Long> {
 
     public static String ADMIN_ROLE = "ADMIN";
 
+    public static String MANAGER_ROLE = "MANAGER";
+
+    public static String MEMBER_ROLE = "MEMBER";
+
     @Column(length = 100, unique = true)
     private String name;
 

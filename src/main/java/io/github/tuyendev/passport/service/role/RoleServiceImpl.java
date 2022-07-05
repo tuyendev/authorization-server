@@ -26,11 +26,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleDto create(Long parentId, String name) {
+    public RoleDto create(Long parentId, String name, String desc) {
         Role parent = getParentRole(parentId);
         Role role = Role.builder()
-                .name(name)
                 .parent(parent)
+                .name(name)
+                .description(desc)
                 .status(Status.ACTIVE)
                 .build();
 

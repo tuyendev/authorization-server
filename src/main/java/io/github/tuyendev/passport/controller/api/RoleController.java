@@ -19,8 +19,8 @@ public class RoleController {
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<RoleDto> testAddRole(@Valid @RequestBody AddRoleRequestDto request) {
-        RoleDto result = roleService.create(request.getParentId(), request.getName());
+    public ResponseEntity<RoleDto> testAddRole(@Valid @RequestBody AddRoleRequestDto req) {
+        RoleDto result = roleService.create(req.getParentId(), req.getName(), req.getDescription());
         return ResponseEntity.ok(result);
     }
 }

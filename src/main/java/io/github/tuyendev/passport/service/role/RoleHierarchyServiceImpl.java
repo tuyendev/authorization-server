@@ -32,7 +32,7 @@ public class RoleHierarchyServiceImpl implements RoleHierarchyService {
                         return role.getName() + " > " + role.getParent().getName();
                     }).collect(Collectors.toList());
 
-            ((RoleHierarchyImpl) roleHierarchy).setHierarchy(String.join("\n", roleHierarchies));
+            ((RoleHierarchyImpl) roleHierarchy).setHierarchy(String.join(" \n ", roleHierarchies));
         }
     }
 }

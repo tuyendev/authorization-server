@@ -18,6 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Oauth2Authorization extends AbstractAuditable<String> {
+
     @Id
     @Column
     private String id;

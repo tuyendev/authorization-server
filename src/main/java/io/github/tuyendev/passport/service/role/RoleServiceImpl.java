@@ -42,11 +42,10 @@ public class RoleServiceImpl implements RoleService {
 
     private Role getParentRole(Long parentId) {
         if (Objects.isNull(parentId)) {
-            return roleRepo.getAdmin()
-                    .orElseThrow(() -> new NotFoundEntityException("Admin should be presented"));
+            return roleRepo.getAdmin();
         }
 
         return roleRepo.findById(parentId)
-                .orElseThrow(() -> new NotFoundEntityException("Parent should be presented"));
+                .orElseThrow(() -> new NotFoundEntityException("app.role.exception.parent-not-existed"));
     }
 }

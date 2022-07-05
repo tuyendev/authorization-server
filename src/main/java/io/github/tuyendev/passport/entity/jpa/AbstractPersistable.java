@@ -10,6 +10,7 @@ import java.util.Objects;
 @MappedSuperclass
 public abstract class AbstractPersistable<U extends Serializable, PK extends Serializable> extends AbstractAuditable<U> {
 
+    private static final long serialVersionUID = 5217154417797843638L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)

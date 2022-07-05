@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @MappedSuperclass
-public abstract class AbstractAuditable<U extends Serializable> {
+public abstract class AbstractAuditable<U extends Serializable> implements Serializable {
 
     protected @Nullable U createdBy;
 

@@ -31,5 +31,4 @@ public class Group extends AbstractPersistable<String, Long> {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "groups")
     private Set<User> users;
-
 }

@@ -27,6 +27,6 @@ public class JpaUserDetailsService implements UserDetailsService {
         if (user.isPresent()) {
             return new SecuredUserDetails(user.get());
         }
-        throw new UsernameNotFoundException("app.user.error.notFound");
+        throw new UsernameNotFoundException("app.user.exception.not-found");
     }
 }

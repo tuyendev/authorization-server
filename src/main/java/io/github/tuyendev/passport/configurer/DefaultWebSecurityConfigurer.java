@@ -30,8 +30,7 @@ public class DefaultWebSecurityConfigurer {
                                 "/js/**",
                                 "/images/**",
                                 "/webjars/**",
-                                "/favicon.ico",
-                                "/test/**").permitAll()
+                                "/favicon.ico").permitAll()
                         .anyRequest().permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(Customizer.withDefaults())

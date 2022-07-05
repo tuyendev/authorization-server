@@ -2,6 +2,7 @@ package io.github.tuyendev.passport.repository;
 
 import io.github.tuyendev.passport.constants.Status;
 import io.github.tuyendev.passport.entity.Role;
+import io.github.tuyendev.passport.exception.NotFoundEntityException;
 import org.springframework.data.jpa.datatables.repository.DataTablesRepository;
 
 import java.util.Optional;
@@ -11,7 +12,11 @@ public interface RoleRepository extends DataTablesRepository<Role, Long> {
 
     Optional<Role> findRoleByNameAndStatus(String name, Integer status);
 
-    default Optional<Role> getAdmin() {
+    default Role getAdmin() {
+        return findAdmin().orElseThrow(() -> new NotFoundEntityException("app.role.exception.admin-not-existed"));
+    }
+
+    default Optional<Role> findAdmin() {
         return findActiveRoleByName(Role.ADMIN_ROLE);
     }
 

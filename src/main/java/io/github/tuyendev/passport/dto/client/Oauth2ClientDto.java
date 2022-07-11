@@ -1,24 +1,42 @@
 package io.github.tuyendev.passport.dto.client;
 
 
+import lombok.Builder;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
-
+@Data
+@Builder
 public class Oauth2ClientDto implements Serializable {
 
     private static final long serialVersionUID = 4687988559162263447L;
 
-    private String id;
+    protected String id;
 
-    private String clientId;
+    protected String clientId;
 
-    private String clientName;
+    protected String clientName;
 
-    private String scopes;
+    protected String authorizationGrantTypes;
 
-    private Date createdDate;
+    protected String scopes;
 
-    private Date lastModifiedDate;
+    protected Date createdDate;
 
+    protected Date lastModifiedDate;
+
+    public Oauth2ClientDto() {
+    }
+
+    public Oauth2ClientDto(String id, String clientId, String clientName, String authorizationGrantTypes, String scopes, Date createdDate, Date lastModifiedDate) {
+        this.id = id;
+        this.clientId = clientId;
+        this.clientName = clientName;
+        this.authorizationGrantTypes = authorizationGrantTypes;
+        this.scopes = scopes;
+        this.createdDate = createdDate;
+        this.lastModifiedDate = lastModifiedDate;
+    }
 }

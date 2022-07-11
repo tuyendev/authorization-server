@@ -1,7 +1,7 @@
 package io.github.tuyendev.passport.service.client;
 
 import com.naharoo.commons.mapstruct.MappingFacade;
-import io.github.tuyendev.passport.entity.Oauth2Client;
+import io.github.tuyendev.passport.dto.client.ViewOauth2ClientDto;
 import io.github.tuyendev.passport.repository.Oauth2ClientRepository;
 import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
@@ -19,7 +19,15 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
         this.mapper = mapper;
     }
 
-    public DataTablesOutput<Oauth2Client> find(DataTablesInput input) {
-        return oauth2ClientRepo.findAll(input);
+    public DataTablesOutput<ViewOauth2ClientDto> find(DataTablesInput input) {
+        var data = oauth2ClientRepo.findAll(input);
+        DataTablesOutput<ViewOauth2ClientDto> result = new DataTablesOutput<>();
+        result.setData(mapper.mapAsList(data.getData(), ViewOauth2ClientDto.class));
+        result.setDraw(data.getDraw());
+        result.setError(data.getError());
+        result.setRecordsFiltered(data.getRecordsFiltered());
+        result.setRecordsTotal(data.getRecordsTotal());
+        result.setSearchPanes(data.getSearchPanes());
+        return result;
     }
 }

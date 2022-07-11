@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Optional;
 
 @MappedSuperclass
 public abstract class AbstractAuditable<U extends Serializable> implements Serializable {
@@ -24,34 +23,34 @@ public abstract class AbstractAuditable<U extends Serializable> implements Seria
     @Temporal(TemporalType.TIMESTAMP) //
     protected @Nullable Date lastModifiedDate;
 
-    public Optional<U> getCreatedBy() {
-        return Optional.ofNullable(createdBy);
+    public U getCreatedBy() {
+        return createdBy;
     }
 
     public void setCreatedBy(U createdBy) {
         this.createdBy = createdBy;
     }
 
-    public Optional<LocalDateTime> getCreatedDate() {
-        return null == createdDate ? Optional.empty()
-                : Optional.of(LocalDateTime.ofInstant(createdDate.toInstant(), ZoneId.systemDefault()));
+    public LocalDateTime getCreatedDate() {
+        return null == createdDate ? null
+                : LocalDateTime.ofInstant(createdDate.toInstant(), ZoneId.systemDefault());
     }
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = Date.from(createdDate.atZone(ZoneId.systemDefault()).toInstant());
     }
 
-    public Optional<U> getLastModifiedBy() {
-        return Optional.ofNullable(lastModifiedBy);
+    public U getLastModifiedBy() {
+        return lastModifiedBy;
     }
 
     public void setLastModifiedBy(U lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public Optional<LocalDateTime> getLastModifiedDate() {
-        return null == lastModifiedDate ? Optional.empty()
-                : Optional.of(LocalDateTime.ofInstant(lastModifiedDate.toInstant(), ZoneId.systemDefault()));
+    public LocalDateTime getLastModifiedDate() {
+        return null == lastModifiedDate ? null
+                : LocalDateTime.ofInstant(lastModifiedDate.toInstant(), ZoneId.systemDefault());
     }
 
     public void setLastModifiedDate(LocalDateTime lastModifiedDate) {

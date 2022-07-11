@@ -5,14 +5,16 @@
     <title>Client Management</title>
 
     <!-- DataTables -->
-    <link rel="stylesheet"
-          th:href="@{/webjars/AdminLTE/3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
-    <link rel="stylesheet"
-          th:href="@{/webjars/AdminLTE/3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}">
-    <link rel="stylesheet"
-          th:href="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}">
+    <link class="custom-link" rel="stylesheet"
+          th:href="@{/webjars/AdminLTE/3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}"/>
+    <link class="custom-link" rel="stylesheet"
+          th:href="@{/webjars/AdminLTE/3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}"/>
+    <link class="custom-link" rel="stylesheet"
+          th:href="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}"/>
 
-    <link class="custom-link"/>
+    <link class="custom-link" rel="stylesheet"
+          th:href="@{/webjars/AdminLTE/3.2.0/plugins/datatables-select/css/select.bootstrap4.min.css}"/>
+
 
     <!-- DataTables  & Plugins -->
     <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables/jquery.dataTables.min.js}"></script>
@@ -21,12 +23,8 @@
     <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
     <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
     <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/jszip/jszip.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/pdfmake/pdfmake.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/pdfmake/vfs_fonts.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-select/js/dataTables.select.min.js}"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-select/js/select.bootstrap4.min.js}"></script>
     <script class="custom-script" th:src="@{/js/jquery.spring-friendly.min.js}"></script>
 </head>
 <body th:replace="~{fragments/layout :: body(~{:: #page-name}, ~{ :: #page-content}, ~{ :: #breadcrumb})}">
@@ -38,19 +36,20 @@
     </li>
 </ol>
 <div id="page-content">
-
+    <div th:insert="fragments/confirm-box ::#confirm-delete-box" ></div>
     <div class="card">
         <div class="card-header">
             <div class="card-title">
                 <a th:href="@{/portal/client/add}" class="btn btn-primary active" role="button" aria-pressed="true">Add</a>
-                <button type="button" class="btn btn-danger disabled">Delete</button>
+                <button id="deleteRows" type="button" class="btn btn-danger disabled " data-dismiss="modal">Delete</button>
             </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+
             <script>
                 $(function () {
-                    $('table#clientTableData').DataTable({
+                    var tableClient = $('table#clientTableData').DataTable({
                         ajax: {
                             contentType: 'application/json',
                             url: '/api/client/list',
@@ -60,6 +59,10 @@
                             }
                         },
                         serverSide: true,
+                        autoWidth: false,
+                        info: true,
+                        responsive: true,
+                        select: true,
                         columns: [
                             {
                                 data: 'id'
@@ -78,21 +81,49 @@
                             },
                             {
                                 data: 'createdDate'
+                            },
+                            {
+                                data: 'lastModifiedDate'
+                            },
+                            {
+                                data: 'actions',
+                                searchable: false,
+                                orderable: false,
+                                render: function ( data, _, _, _ ) {
+                                    return '<a href="/portal/client/edit/'+data+'"><i class="fas fa-pen-square"></i> Edit</a>';
+                                }
                             }
                         ]
-                    })});
+                    });
+                    $('table#clientTableData tbody').on('click', 'tr', function () {
+                        $(this).toggleClass('selected');
+                        if(tableClient.rows('.selected').data().length > 0) {
+                            $('#deleteRows').removeClass("disabled");
+                        } else {
+                            $('#deleteRows').addClass("disabled");
+                        }
+                    });
+                    $('button#deleteRows').on('click', function (){
+                        $('#confirm-delete-box').modal('show');
+                    })
+                    $('button#confirmed-delete').on('click', function (){
+                        console.log("TODO Call AJax to delete");
+                        $('#confirm-delete-box').modal('hide');
+                    })
+                });
             </script>
             <table id="clientTableData" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>ClientID</th>
-                    <th>Name</th>
-                    <th>Scopes</th>
-                    <th>AuthorizationGrantTypes</th>
-                    <th>CreatedDate</th>
-                    <th>...</th>
-                </tr>
+                    <tr>
+                        <th style="width: 15%">ID</th>
+                        <th style="width: 15%">ClientID</th>
+                        <th style="width: 20%">Name</th>
+                        <th style="width: 5%">Scopes</th>
+                        <th>AuthorizationGrantTypes</th>
+                        <th style="width: 10%">CreatedDate</th>
+                        <th style="width: 10%">LastModifiedDate</th>
+                        <th style="width: 5%">Actions</th>
+                    </tr>
                 </thead>
             </table>
         </div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head(~{this :: title}, ~{}, ~{})">
+    <meta charset="UTF-8">
+    <title>Add Client</title>
+</head>
+<body th:replace="~{fragments/layout :: body(~{:: #page-name}, ~{ :: #page-content}, ~{ :: #breadcrumb})}">
+<span id="page-name">Add Client</span>
+<ol class="breadcrumb float-sm-right" id="breadcrumb">
+    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+    <li class="breadcrumb-item">
+        <a th:href="@{/portal/client}">Client Management</a>
+    </li>
+    <li class="breadcrumb-item active">
+        <span>Add Client</span>
+    </li>
+</ol>
+<div id="page-content">
+    FOR TEST
+</div>
+</body>
+
+</html>

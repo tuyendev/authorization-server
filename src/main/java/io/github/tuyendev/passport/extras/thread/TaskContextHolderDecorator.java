@@ -17,7 +17,7 @@ public class TaskContextHolderDecorator implements TaskDecorator {
                 SecurityContextHolder.setContext(securityContext);
                 LocaleContextHolder.setLocale(locale, true);
                 runnable.run();
-            } catch (Throwable e) {
+            } catch (Exception e) {
                 log.error("Cannot execute with TaskContextHolderDecorator", e);
             }
         };

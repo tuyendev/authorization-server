@@ -42,7 +42,7 @@ public class MultipleLanguageConfigurer extends AcceptHeaderLocaleResolver imple
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public MessageSource messageSource() {
         var messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:messages");
+        messageSource.setBasenames("classpath:messages", "classpath:views");
         messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
         return messageSource;
     }

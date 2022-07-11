@@ -42,7 +42,7 @@ public class Response<T> implements Serializable {
         return Response.builder()
                 .status(HttpStatus.OK.value())
                 .metadata(Metadata.successBlock())
-                .payload(Map.of("message", val("common.message.success"))).build();
+                .payload(Map.of("message", val("app.common.success"))).build();
     }
 
     public static <T> Response ok(T payload) {
@@ -62,28 +62,28 @@ public class Response<T> implements Serializable {
     public static Response failed(MethodArgumentNotValidException e) {
         return Response.builder().status(HttpStatus.BAD_REQUEST.value())
                 .metadata(Metadata.errorBlock(e))
-                .payload(ErrorContent.build(val("common.message.error.validation"), e))
+                .payload(ErrorContent.build(val("app.common.exception.validation"), e))
                 .build();
     }
 
     public static Response failed(AccessDeniedException e) {
         return Response.builder().status(HttpStatus.FORBIDDEN.value())
                 .metadata(Metadata.errorBlock(e))
-                .payload(ErrorContent.build("common.message.error.forbidden-access"))
+                .payload(ErrorContent.build("app.common.exception.forbidden-access"))
                 .build();
     }
 
     public static Response failed(HttpRequestMethodNotSupportedException e) {
         return Response.builder().status(HttpStatus.NOT_ACCEPTABLE.value())
                 .metadata(Metadata.errorBlock(e))
-                .payload(ErrorContent.build("common.message.error.unsupported-method"))
+                .payload(ErrorContent.build("app.common.exception.unsupported-method"))
                 .build();
     }
 
     public static Response failed(ServletException e) {
         return Response.builder().status(HttpStatus.BAD_REQUEST.value())
                 .metadata(Metadata.errorBlock(e))
-                .payload(ErrorContent.build("common.message.error.servlet"))
+                .payload(ErrorContent.build("app.common.exception.servlet"))
                 .build();
     }
 
@@ -96,54 +96,54 @@ public class Response<T> implements Serializable {
 
     private static String getAuthenticationMessage(AuthenticationException e) {
         if (e instanceof InsufficientAuthenticationException) {
-            return "common.message.error.authentication.insufficient";
+            return "app.common.exception.authentication.insufficient";
         }
         if (e instanceof AccountExpiredException) {
-            return "common.message.error.authentication.account-expired";
+            return "app.common.exception.authentication.account-expired";
         }
         if (e instanceof CredentialsExpiredException) {
-            return "common.message.error.authentication.account-credential-expired";
+            return "app.common.exception.authentication.account-credential-expired";
         }
         if (e instanceof DisabledException) {
-            return "common.message.error.authentication.account-disabled";
+            return "app.common.exception.authentication.account-disabled";
         }
         if (e instanceof LockedException) {
-            return "common.message.error.authentication.account-locked";
+            return "app.common.exception.authentication.account-locked";
         }
         if (e instanceof AccountStatusException) {
-            return "common.message.error.authentication.account-inaccessible";
+            return "app.common.exception.authentication.account-inaccessible";
         }
         if (e instanceof BadCredentialsException) {
-            return "common.message.error.authentication.bad-credential";
+            return "app.common.exception.authentication.bad-credential";
         }
-        return "common.message.error.authentication";
+        return "app.common.exception.authentication";
     }
 
     public static Response failed(DataAccessException e) {
         return Response.builder().status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .metadata(Metadata.errorBlock(e))
-                .payload(ErrorContent.build(val("common.message.error.database")))
+                .payload(ErrorContent.build(val("app.common.exception.database")))
                 .build();
     }
 
     public static Response failed(RuntimeException e) {
         return Response.builder().status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .metadata(Metadata.errorBlock(e))
-                .payload(ErrorContent.build(val("common.message.error.runtime-unhandled")))
+                .payload(ErrorContent.build(val("app.common.exception.runtime-unhandled")))
                 .build();
     }
 
     public static Response unexpected(Exception e) {
         return Response.builder().status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .metadata(Metadata.errorBlock(e))
-                .payload(ErrorContent.build(val("common.message.error.unhandled")))
+                .payload(ErrorContent.build(val("app.common.exception.unhandled")))
                 .build();
     }
 
     public static Response error(Error e) {
         return Response.builder().status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .metadata(Metadata.errorBlock(e))
-                .payload(ErrorContent.build(val("common.message.error.system")))
+                .payload(ErrorContent.build(val("app.common.exception.system")))
                 .build();
     }
 

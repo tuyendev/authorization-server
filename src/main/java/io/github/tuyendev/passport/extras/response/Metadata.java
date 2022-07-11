@@ -6,6 +6,7 @@ import brave.propagation.TraceContext;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.tuyendev.passport.utils.ApplicationContextUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,8 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.util.Base64Utils;
-import vn.bssd.beefast.common.utils.ApplicationContextUtil;
-import vn.bssd.common.logging.annotation.Ignorable;
 
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
@@ -68,7 +67,6 @@ public class Metadata implements Serializable {
                 });
     }
 
-    @Ignorable
     public static Metadata errorBlock(Throwable e) {
         Metadata metadata = Metadata.builder()
                 .timestamp(now())

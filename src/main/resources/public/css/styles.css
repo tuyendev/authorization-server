@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.menu-active {
+  background: #ffc107 !important;
+  color: black !important;;
+}
+
+.menu-active:hover {
+  background: whitesmoke !important;
+}

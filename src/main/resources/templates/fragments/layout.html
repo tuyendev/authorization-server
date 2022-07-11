@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title, links, scripts)">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta content="Oauth2 & OpenID secured server" name="description"/>
+    <meta content="BSD Vietnam" name="author"/>
+
+
+    <link rel="apple-touch-icon" sizes="120x120" th:href="@{/img/apple-touch-icon.png}">
+    <link rel="icon" sizes="32x32" th:href="@{/img/favicon-32x32.png}" type="image/png">
+    <link rel="icon" sizes="16x16" th:href="@{/img/favicon-16x16.png}" type="image/png">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <link rel="manifest" th:href="@{/img/site.webmanifest}">
+    <link color="#5bbad5" rel="mask-icon" th:href="@{/img/safari-pinned-tab.svg}">
+    <meta content="#da532c" name="msapplication-TileColor">
+
+    <meta content="#ffffff" name="theme-color">
+
+    <title th:replace="${title}">Layout Page</title>
+
+    <!--/* Per-page placeholder for additional links */-->
+    <th:block th:replace="${links}" />
+
+    <link th:href="@{/css/styles.css}" type="text/css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+          rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.1.1/css/all.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/webjars/AdminLTE/3.2.0/dist/css/adminlte.min.css}">
+    <!-- JQuery-->
+    <script th:src="@{/webjars/AdminLTE/3.2.0/plugins/jquery/jquery.min.js}" type="text/javascript"></script>
+    <!-- Bootstrap 4 -->
+    <script th:src="@{/webjars/AdminLTE/3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js}"
+            type="text/javascript"></script>
+    <!-- AdminLTE App -->
+    <script th:src="@{/webjars/AdminLTE/3.2.0/dist/js/adminlte.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/scripts.js}" type="text/javascript"></script>
+
+    <!--/* Per-page placeholder for additional scripts */-->
+    <th:block th:replace="${scripts}" />
+</head>
+<body class="hold-transition sidebar-mini" th:fragment="body(pageName,pageContent, breadcrumb)">
+
+<div class="wrapper">
+    <section th:insert="~{fragments/header :: header}"></section>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h3 class="text-primary">
+                            <span th:replace="${pageName}">Layout Page</span>
+                        </h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right" th:replace="${breadcrumb}">
+                            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                            <li class="breadcrumb-item active">
+                                <span>Layout Page</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div th:replace="${pageContent}">
+
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+    <section th:insert="~{fragments/footer ::footer}"></section>
+</div>
+
+</body>
+</html>

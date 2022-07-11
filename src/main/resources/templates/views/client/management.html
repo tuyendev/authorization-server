@@ -27,19 +27,7 @@
     <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
     <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
     <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
-    <script class="custom-script">
-        $(function () {
-            $('#clientTableData').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
+    <script class="custom-script" th:src="@{/js/jquery.spring-friendly.min.js}"></script>
 </head>
 <body th:replace="~{fragments/layout :: body(~{:: #page-name}, ~{ :: #page-content}, ~{ :: #breadcrumb})}">
 <span id="page-name">Client Management</span>
@@ -60,29 +48,52 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            <script>
+                $(function () {
+                    $('table#clientTableData').DataTable({
+                        ajax: {
+                            contentType: 'application/json',
+                            url: '/api/client/list',
+                            type: 'POST',
+                            data: function (d) {
+                                return JSON.stringify(d);
+                            }
+                        },
+                        serverSide: true,
+                        columns: [
+                            {
+                                data: 'id'
+                            },
+                            {
+                                data: 'clientId'
+                            },
+                            {
+                                data: 'clientName'
+                            },
+                            {
+                                data: 'scopes'
+                            },
+                            {
+                                data: 'authorizationGrantTypes'
+                            },
+                            {
+                                data: 'createdDate'
+                            }
+                        ]
+                    })});
+            </script>
             <table id="clientTableData" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Client ID</th>
+                    <th>ClientID</th>
                     <th>Name</th>
-                    <th>Grant Types</th>
                     <th>Scopes</th>
-                    <th></th>
+                    <th>AuthorizationGrantTypes</th>
+                    <th>CreatedDate</th>
+                    <th>...</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Trident</td>
-                    <td>Internet
-                        Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                </tr>
-                </tbody>
             </table>
         </div>
 

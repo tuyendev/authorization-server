@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationContextUtil {
 
-	private static ApplicationContext applicationContext;
+    private static ApplicationContext applicationContext;
 
-	@Autowired
-	public ApplicationContextUtil(ApplicationContext applicationContext) {
-		ApplicationContextUtil.applicationContext = applicationContext;
-	}
+    @Autowired
+    public ApplicationContextUtil(ApplicationContext applicationContext) {
+        ApplicationContextUtil.applicationContext = applicationContext;
+    }
 
-	public static <T> T getBean(Class<T> clazz) {
-		return applicationContext.getBean(clazz);
-	}
+    public static <T> T getBean(Class<T> clazz) {
+        return applicationContext.getBean(clazz);
+    }
 
 }

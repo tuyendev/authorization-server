@@ -122,9 +122,10 @@ public class Response<T> implements Serializable {
     public static Response failed(DataAccessException e) {
         return Response.builder().status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .metadata(Metadata.errorBlock(e))
-                .payload(ErrorContent.build(val("app.common.exception.database")))
+                .payload(ErrorContent.build(val("app.common.exception.cannot-access-data"), e.getMessage()))
                 .build();
     }
+
 
     public static Response failed(RuntimeException e) {
         return Response.builder().status(HttpStatus.INTERNAL_SERVER_ERROR.value())

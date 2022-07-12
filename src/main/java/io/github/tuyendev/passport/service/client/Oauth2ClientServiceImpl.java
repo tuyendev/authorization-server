@@ -7,6 +7,8 @@ import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Oauth2ClientServiceImpl implements Oauth2ClientService {
 
@@ -29,5 +31,10 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
         result.setRecordsTotal(data.getRecordsTotal());
         result.setSearchPanes(data.getSearchPanes());
         return result;
+    }
+
+    @Override
+    public void delete(List<String> ids) {
+        oauth2ClientRepo.deleteAllById(ids);
     }
 }

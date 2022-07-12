@@ -17,15 +17,16 @@
 
 
     <!-- DataTables  & Plugins -->
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables/jquery.dataTables.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-select/js/dataTables.select.min.js}"></script>
-    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-select/js/select.bootstrap4.min.js}"></script>
-    <script class="custom-script" th:src="@{/js/jquery.spring-friendly.min.js}"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables/jquery.dataTables.min.js}" type="text/javascript"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}" type="text/javascript"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-responsive/js/dataTables.responsive.min.js}" type="text/javascript"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}" type="text/javascript"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/dataTables.buttons.min.js}" type="text/javascript"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}" type="text/javascript"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-select/js/dataTables.select.min.js}" type="text/javascript"></script>
+    <script class="custom-script" th:src="@{/webjars/AdminLTE/3.2.0/plugins/datatables-select/js/select.bootstrap4.min.js}" type="text/javascript"></script>
+    <script class="custom-script" th:src="@{/js/jquery.spring-friendly.min.js}" type="text/javascript"></script>
+    <script class="custom-script" th:src="@{/js/client-management.min.js}" type="text/javascript"></script>
 </head>
 <body th:replace="~{fragments/layout :: body(~{:: #page-name}, ~{ :: #page-content}, ~{ :: #breadcrumb})}">
 <span id="page-name">Client Management</span>
@@ -46,72 +47,6 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-
-            <script>
-                $(function () {
-                    var tableClient = $('table#clientTableData').DataTable({
-                        ajax: {
-                            contentType: 'application/json',
-                            url: '/api/client/list',
-                            type: 'POST',
-                            data: function (d) {
-                                return JSON.stringify(d);
-                            }
-                        },
-                        serverSide: true,
-                        autoWidth: false,
-                        info: true,
-                        responsive: true,
-                        select: true,
-                        columns: [
-                            {
-                                data: 'id'
-                            },
-                            {
-                                data: 'clientId'
-                            },
-                            {
-                                data: 'clientName'
-                            },
-                            {
-                                data: 'scopes'
-                            },
-                            {
-                                data: 'authorizationGrantTypes'
-                            },
-                            {
-                                data: 'createdDate'
-                            },
-                            {
-                                data: 'lastModifiedDate'
-                            },
-                            {
-                                data: 'actions',
-                                searchable: false,
-                                orderable: false,
-                                render: function ( data, _, _, _ ) {
-                                    return '<a href="/portal/client/edit/'+data+'"><i class="fas fa-pen-square"></i> Edit</a>';
-                                }
-                            }
-                        ]
-                    });
-                    $('table#clientTableData tbody').on('click', 'tr', function () {
-                        $(this).toggleClass('selected');
-                        if(tableClient.rows('.selected').data().length > 0) {
-                            $('#deleteRows').removeClass("disabled");
-                        } else {
-                            $('#deleteRows').addClass("disabled");
-                        }
-                    });
-                    $('button#deleteRows').on('click', function (){
-                        $('#confirm-delete-box').modal('show');
-                    })
-                    $('button#confirmed-delete').on('click', function (){
-                        console.log("TODO Call AJax to delete");
-                        $('#confirm-delete-box').modal('hide');
-                    })
-                });
-            </script>
             <table id="clientTableData" class="table table-bordered table-striped">
                 <thead>
                     <tr>

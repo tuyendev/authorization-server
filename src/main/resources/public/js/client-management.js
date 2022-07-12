@@ -77,7 +77,7 @@ $(function () {
                 searchable: false,
                 orderable: false,
                 render: function ( data, _, _, _ ) {
-                    return '<a href="/portal/client/edit/'+data+'"><i class="fas fa-pen-square"></i> Edit</a>';
+                    return '<a href="/portal/client/edit/'+data+'"><i class="fas fa-pen-square"></i></a>';
                 }
             }
         ]

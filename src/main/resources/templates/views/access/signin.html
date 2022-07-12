@@ -57,12 +57,12 @@
                     </div>
 
                     <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${param.error}">
-                        <strong>Username and password</strong> must be correct.
+                        <p th:text="#{app.signin.views.exception.user-password-wrong}">Username and password must be correct</p>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
                     </div>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert"
                          th:if="${param.logout}">
-                        <p>You have been logged out.</p>
+                        <p th:text="#{app.signin.views.message.logout}">You have been logged out.</p>
 
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
                     </div>
@@ -71,39 +71,39 @@
                         <div class="form-floating mb-3">
                             <input class="form-control" id="input-email" name="username" placeholder="user@bssd.vn"
                                    required type="text">
-                            <label for="input-email">Username</label>
+                            <label for="input-email" th:text="#{app.signin.views.text.username}">Username</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input class="form-control" id="input-password" name="password" placeholder="password"
                                    required type="password">
-                            <label for="input-password">Password</label>
+                            <label for="input-password" th:text="#{app.signin.views.text.password}">Password</label>
                         </div>
 
                         <div class="form-check mb-3">
                             <input class="form-check-input" id="rememberPasswordCheck" name="remember-me" type="checkbox"
                                    value="">
-                            <label class="form-check-label" for="rememberPasswordCheck">
+                            <label class="form-check-label" for="rememberPasswordCheck" th:text="#{app.signin.views.text.remember-me}">
                                 Remember password
                             </label>
                         </div>
                         <div class="d-grid mb-3">
                             <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
-                                Sign in
+                                <span th:text="#{app.signin.views.text.signin}">Sign in</span>
                                 <i class="fa-solid fa-arrow-right-to-bracket"></i>
                             </button>
                         </div>
                         <div>
                             <a class="link-primary" href="/forgot-password">
-                                <span class="fst-italic">I forgot my password</span>
+                                <span class="fst-italic" th:text="#{app.signin.views.text.forgot-password}">I forgot my password</span>
                             </a>
                         </div>
                         <hr class="my-4">
                         <div class="row">
-                            <p>Need an account ?</p>
+                            <p th:text="#{app.signin.views.text.need-account}">Need an account ?</p>
                         </div>
                         <div class="d-grid">
                             <a class="btn btn-register btn-login text-uppercase fw-bold" href="/register">
-                                <span>Sign up</span>
+                                <span th:text="#{app.signup.views.title}">Sign up</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>

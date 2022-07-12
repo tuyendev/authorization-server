@@ -50,14 +50,14 @@
             <table id="clientTableData" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th style="width: 15%">ID</th>
-                        <th style="width: 15%">ClientID</th>
-                        <th style="width: 20%">Name</th>
-                        <th style="width: 5%">Scopes</th>
-                        <th>AuthorizationGrantTypes</th>
-                        <th style="width: 10%">CreatedDate</th>
-                        <th style="width: 10%">LastModifiedDate</th>
-                        <th style="width: 5%">Actions</th>
+                        <th style="width: 15%" th:text="#{app.client.views.management.table.column.id}">ID</th>
+                        <th style="width: 15%" th:text="#{app.client.views.management.table.column.clientId}">ClientID</th>
+                        <th style="width: 20%" th:text="#{app.client.views.management.table.column.clientName}">Name</th>
+                        <th style="width: 10%" th:text="#{app.client.views.management.table.column.scopes}">Scopes</th>
+                        <th th:text="#{app.client.views.management.table.column.authGrantTypes}">AuthorizationGrantTypes</th>
+                        <th style="width: 10%" th:text="#{app.client.views.management.table.column.createDate}">CreatedDate</th>
+                        <th style="width: 10%" th:text="#{app.client.views.management.table.column.lastModifiedDate}">LastModifiedDate</th>
+                        <th style="width: 5%" th:text="#{app.client.views.management.table.column.actions}">Actions</th>
                     </tr>
                 </thead>
             </table>

@@ -1,4 +1,38 @@
 $(function () {
+    const preDefinedLang = {
+        'en-US': {
+            path: 'en',
+            mods: {
+                sLengthMenu: "Display ENGLISH _MENU_ records per page"
+            }
+        },
+        'en': {
+            path: 'en-GB',
+            mods: {
+                sLengthMenu: "Display ENGLISH _MENU_ records per page"
+            }
+        },
+        'vi': {
+            path: 'vi',
+            mods: {
+                sLengthMenu: "Display VIETNAMESE _MENU_ records per page"
+            }
+        }
+    };
+    function getDataTableLanguage() {
+        var lang = navigator.language || navigator.userLanguage;
+        var result = null;
+        var path = '//cdn.datatables.net/plug-ins/1.12.1/i18n/';
+        $.ajax({
+            async: false,
+            url: path + preDefinedLang[lang].path + '.json',
+            success: function(obj) {
+                result = $.extend({}, obj, preDefinedLang[lang].mods)
+            }
+        })
+        return result
+    }
+
     let table = $('table#clientTableData').DataTable({
         ajax: {
             contentType: 'application/json',
@@ -12,6 +46,7 @@ $(function () {
         autoWidth: false,
         info: true,
         responsive: true,
+        language: getDataTableLanguage(),
         select: {
             style: 'multi'
         },

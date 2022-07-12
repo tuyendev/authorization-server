@@ -86,7 +86,8 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>Dashboard
+                            <p th:text="#{app.dashboard.views.title}">
+                                Dashboard
                             </p>
                         </a>
                     </li>
@@ -101,7 +102,7 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/portal/group}">
                             <i class="nav-icon fa-solid fa-people-group"></i>
-                            <p>
+                            <p th:text="#{app.group.views.management.title}">
                                 Group Management
                             </p>
                         </a>
@@ -109,7 +110,7 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/portal/user}">
                             <i class="nav-icon fa-solid fa-user"></i>
-                            <p>
+                            <p th:text="#{app.user.views.management.title}">
                                 User Management
                             </p>
                         </a>
@@ -117,7 +118,7 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/portal/token}">
                             <i class="nav-icon fas fa-key"></i>
-                            <p>
+                            <p th:text="#{app.token.views.management.title}">
                                 Token Management
                             </p>
                         </a>

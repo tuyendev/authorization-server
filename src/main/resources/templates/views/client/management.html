@@ -31,7 +31,7 @@
 <body th:replace="~{fragments/layout :: body(~{:: #page-name}, ~{ :: #page-content}, ~{ :: #breadcrumb})}">
 <span id="page-name" th:text="#{app.client.views.management.title}">Client Management</span>
 <ol class="breadcrumb float-sm-right" id="breadcrumb">
-    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+    <li class="breadcrumb-item"><a th:href="@{/}"><span th:text="#{app.dashboard.views.home.title}">Home</span></a></li>
     <li class="breadcrumb-item active">
         <span th:text="#{app.client.views.management.title}">Client Management</span>
     </li>
@@ -41,8 +41,8 @@
     <div class="card">
         <div class="card-header">
             <div class="card-title">
-                <a th:href="@{/portal/client/add}" class="btn btn-primary active" role="button" aria-pressed="true">Add</a>
-                <button id="deleteRows" type="button" class="btn btn-danger disabled " data-dismiss="modal">Delete</button>
+                <a th:href="@{/portal/client/add}" class="btn btn-primary active" role="button" aria-pressed="true"><span th:text="#{app.common.views.button.add}">Add</span></a>
+                <button id="deleteRows" type="button" class="btn btn-danger disabled " data-dismiss="modal"><span th:text="#{app.common.views.button.delete}">Delete</span></button>
             </div>
         </div>
         <!-- /.card-header -->

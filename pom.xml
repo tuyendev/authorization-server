@@ -173,6 +173,7 @@
 	</dependencyManagement>
 	<build>
 		<plugins>
+			<!--TODO - Minify JS and CSS-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', event => {
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
     if (sidebarToggle) {
 
-        if(localStorage.getItem('sb|sidebar-toggle') != null) {
+        if (localStorage.getItem('sb|sidebar-toggle') != null) {
             if (localStorage.getItem('sb|sidebar-toggle') === 'false') {
                 document.body.classList.remove("sb-sidenav-toggled")
                 document.body.classList.add("sidebar-collapse")

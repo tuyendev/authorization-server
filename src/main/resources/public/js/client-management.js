@@ -19,6 +19,7 @@ $(function () {
             }
         }
     };
+
     function getDataTableLanguage() {
         var lang = navigator.language || navigator.userLanguage;
         var result = null;
@@ -26,7 +27,7 @@ $(function () {
         $.ajax({
             async: false,
             url: path + preDefinedLang[lang].path + '.json',
-            success: function(obj) {
+            success: function (obj) {
                 result = $.extend({}, obj, preDefinedLang[lang].mods)
             }
         })
@@ -76,26 +77,26 @@ $(function () {
                 data: 'actions',
                 searchable: false,
                 orderable: false,
-                render: function ( data, _, _, _ ) {
-                    return '<a href="/portal/client/edit/'+data+'"><i class="fas fa-pen-square"></i></a>';
+                render: function (data, _, _, _) {
+                    return '<a href="/portal/client/edit/' + data + '"><i class="fas fa-pen-square"></i></a>';
                 }
             }
         ]
     });
     $('table#clientTableData tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
-        if(table.rows('.selected').data().length > 0) {
+        if (table.rows('.selected').data().length > 0) {
             $('#deleteRows').removeClass("disabled");
         } else {
             $('#deleteRows').addClass("disabled");
         }
     });
-    $('button#deleteRows').on('click', function (){
+    $('button#deleteRows').on('click', function () {
         $('#confirm-delete-box').modal('show');
     })
-    $('button#confirmed-delete').on('click', function (){
+    $('button#confirmed-delete').on('click', function () {
         let deletedIds = [];
-        table.rows('.selected').data().each(function (row){
+        table.rows('.selected').data().each(function (row) {
             deletedIds.push(row['id']);
         })
         $.ajax({
@@ -103,13 +104,13 @@ $(function () {
             url: '/api/client/delete',
             type: 'POST',
             data: JSON.stringify(deletedIds),
-            success: function(res) {
+            success: function (res) {
                 toastr.success(res.payload);
                 table.ajax.reload();
                 $('#deleteRows').addClass("disabled");
                 $('#confirm-delete-box').modal('hide');
             },
-            error: function(res,_,_) {
+            error: function (res, _, _) {
                 toastr.error(res.responseJSON.payload.message);
                 $('#confirm-delete-box').modal('hide');
             }

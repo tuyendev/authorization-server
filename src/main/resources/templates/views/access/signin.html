@@ -18,7 +18,7 @@
     <meta content="#da532c" name="msapplication-TileColor">
 
     <meta content="#ffffff" name="theme-color">
-    <title th:text="#{app.signin.views.text.signin}">Sign In - TD Passport</title>
+    <title th:text="#{app.signin.views.signin.title}">Sign In - TD Passport</title>
     <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" th:rel="stylesheet"/>
     <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/webjars/font-awesome/6.1.1/js/all.js}"></script>
@@ -43,6 +43,9 @@
         }
 
         .btn-register {
+            font-size: 0.95rem;
+            letter-spacing: 0.05rem;
+            padding: 0.75rem 1rem;
             color: white !important;
             background-color: #3b5998;
         }
@@ -81,12 +84,12 @@
                             <input class="form-control" id="input-email" name="username"
                                    placeholder="yourmail@sample.com"
                                    required type="text">
-                            <label for="input-email" th:text="#{app.signin.views.text.username}">Username</label>
+                            <label for="input-email" th:text="#{app.signin.views.label.username}">Username</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input class="form-control" id="input-password" name="password" placeholder="password"
                                    required type="password">
-                            <label for="input-password" th:text="#{app.signin.views.text.password}">Password</label>
+                            <label for="input-password" th:text="#{app.signin.views.label.password}">Password</label>
                         </div>
 
                         <div class="form-check mb-3">
@@ -94,19 +97,19 @@
                                    type="checkbox"
                                    value="">
                             <label class="form-check-label" for="rememberPasswordCheck"
-                                   th:text="#{app.signin.views.text.remember-me}">
+                                   th:text="#{app.signin.views.label.remember-me}">
                                 Remember password
                             </label>
                         </div>
                         <div class="d-grid mb-3">
-                            <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
-                                <span th:text="#{app.signin.views.text.signin}">Sign in</span>
+                            <button class="btn btn-primary btn-lg btn-login text-uppercase fw-bold" type="submit">
+                                <span th:text="#{app.signin.views.btn-text.signin}">Login</span>
                                 <i class="fa-solid fa-arrow-right-to-bracket"></i>
                             </button>
                         </div>
                         <div>
                             <a class="link-primary" href="/forgot-password">
-                                <span class="fst-italic" th:text="#{app.signin.views.text.forgot-password}">I forgot my password</span>
+                                <span class="fst-italic" th:text="#{app.signin.views.link-text.forgot-password}">I forgot my password</span>
                             </a>
                         </div>
                         <hr class="my-4">
@@ -114,8 +117,8 @@
                             <p th:text="#{app.signin.views.text.need-account}">Need an account ?</p>
                         </div>
                         <div class="d-grid">
-                            <a class="btn btn-register btn-login text-uppercase fw-bold" href="/register">
-                                <span th:text="#{app.signup.views.title}">Sign up</span>
+                            <a class="btn btn-register text-uppercase fw-bold" href="/register">
+                                <span th:text="#{app.signin.views.button.signup}">Sign up</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>

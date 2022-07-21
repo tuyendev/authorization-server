@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DefaultPageController {
 
     @GetMapping("/")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('A')")
     public String index() {
         return "home";
     }

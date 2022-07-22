@@ -1,5 +1,6 @@
 package io.github.tuyendev.passport.service.user;
 
+import com.naharoo.commons.mapstruct.MappingFacade;
 import io.github.tuyendev.passport.dto.user.UserDto;
 import io.github.tuyendev.passport.entity.User;
 import io.github.tuyendev.passport.repository.UserRepository;
@@ -14,9 +15,12 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepo, PasswordEncoder passwordEncoder) {
+    private final MappingFacade mapper;
+
+    public UserServiceImpl(UserRepository userRepo, PasswordEncoder passwordEncoder, MappingFacade mapper) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
+        this.mapper = mapper;
     }
 
     @Override
@@ -34,7 +38,7 @@ public class UserServiceImpl implements UserService {
                 .name(fullname)
                 .unsignedName(TextUtil.unsigned(fullname))
                 .build();
-        userRepo.save(user);
-        return null;
+        User saved = userRepo.save(user);
+        return mapper.map(saved, UserDto.class);
     }
 }

@@ -73,8 +73,8 @@ public class DefaultPageController {
             view.setUrl("/register");
             return view;
         }
-        redirectAttributes.addAttribute("register", true);
         userService.create(mapper.map(request, UserDto.class));
+        redirectAttributes.addAttribute("register", true);
         view.setUrl("/login");
         return view;
     }

@@ -26,7 +26,7 @@ services:
     networks:
       - passport
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      test: [ "CMD", "mysqladmin", "ping", "--silent" ]
       interval: 2s
       timeout: 20s
       retries: 10

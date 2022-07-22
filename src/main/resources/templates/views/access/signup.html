@@ -31,7 +31,8 @@
     <script crossorigin="anonymous"
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js"></script>
     <!-- Tempus Dominus JavaScript -->
-    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.js"></script>
+    <script crossorigin="anonymous"
+            src="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.js"></script>
     <script>
         $(function () {
             new tempusDominus.TempusDominus(document.getElementById('birthdate'), {
@@ -192,7 +193,8 @@
 
                         <div class="col-md-12">
                             <div class="form-group form-floating mb-3">
-                                <input class="form-control" id="input-email" name="email" placeholder="yourmail@sample.com"
+                                <input class="form-control" id="input-email" name="email"
+                                       placeholder="yourmail@sample.com"
                                        required
                                        th:field="*{email}" type="email">
                                 <label for="input-email" th:text="#{app.signup.views.label.username}">Email</label>
@@ -211,7 +213,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group form-floating mb-3">
-                                <input class="form-control" id="input-lastname" name="familyName" placeholder="yourmail@sample.com"
+                                <input class="form-control" id="input-lastname" name="familyName"
+                                       placeholder="yourmail@sample.com"
                                        required
                                        th:field="*{familyName}" type="text">
                                 <label for="input-lastname" th:text="#{app.signup.views.label.lastname}">Last
@@ -228,9 +231,9 @@
                                     <input class="form-control" data-td-target="#birthdate"
                                            id="birthdateInput"
                                            name="birthdate"
-                                           title="Password must"
                                            placeholder="01/01/1978"
                                            th:field="*{birthdate}"
+                                           title="Password must"
                                            type="text"/>
                                     <label for="birthdateInput"
                                            th:text="#{app.signup.views.label.birthdate}">Birthdate</label>

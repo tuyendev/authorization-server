@@ -20,6 +20,7 @@ public class UserDto extends BaseDto {
     private Boolean emailVerified;
     private String username;
     private String preferredUsername;
+
     private String password;
     private String name;
     private String unsignedName;
@@ -41,4 +42,33 @@ public class UserDto extends BaseDto {
     private Boolean accExpired;
     private Boolean credsExpired;
 
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "email='" + email + '\'' +
+                ", emailVerified=" + emailVerified +
+                ", username='" + username + '\'' +
+                ", preferredUsername='" + preferredUsername + '\'' +
+                ", password='" + "ENCRYPTED" + '\'' +
+                ", name='" + name + '\'' +
+                ", unsignedName='" + unsignedName + '\'' +
+                ", givenName='" + givenName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", familyName='" + familyName + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", profile='" + profile + '\'' +
+                ", picture='" + picture + '\'' +
+                ", website='" + website + '\'' +
+                ", gender=" + gender +
+                ", birthdate=" + birthdate +
+                ", zoneInfo='" + zoneInfo + '\'' +
+                ", locale='" + locale + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", phoneNumberVerified=" + phoneNumberVerified +
+                ", enabled=" + enabled +
+                ", accLocked=" + accLocked +
+                ", accExpired=" + accExpired +
+                ", credsExpired=" + credsExpired +
+                '}';
+    }
 }

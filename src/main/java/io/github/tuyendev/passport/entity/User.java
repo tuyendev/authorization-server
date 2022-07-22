@@ -1,10 +1,13 @@
 package io.github.tuyendev.passport.entity;
 
 import io.github.tuyendev.passport.entity.jpa.AbstractPersistable;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -13,8 +16,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class User extends AbstractPersistable<String, Long> {
 
     @Column(name = "email", length = 80, unique = true, nullable = false)
@@ -106,6 +107,38 @@ public class User extends AbstractPersistable<String, Long> {
     )
     private Set<Group> groups;
 
+    private User() {
+    }
+
+    public User(String email, Boolean emailVerified, String username, String preferredUsername, String password, String name, String unsignedName, String givenName, String middleName, String familyName, String nickname, String profile, String picture, String website, Integer gender, LocalDate birthdate, String zoneInfo, String locale, String phoneNumber, Boolean phoneNumberVerified, Boolean enabled, Boolean accLocked, Boolean accExpired, Boolean credsExpired, Set<Role> roles, Set<Group> groups) {
+        this.email = email;
+        this.emailVerified = Objects.nonNull(emailVerified) ? emailVerified : Boolean.FALSE;
+        this.username = username;
+        this.preferredUsername = preferredUsername;
+        this.password = password;
+        this.name = name;
+        this.unsignedName = unsignedName;
+        this.givenName = givenName;
+        this.middleName = middleName;
+        this.familyName = familyName;
+        this.nickname = nickname;
+        this.profile = profile;
+        this.picture = picture;
+        this.website = website;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.zoneInfo = zoneInfo;
+        this.locale = locale;
+        this.phoneNumber = phoneNumber;
+        this.phoneNumberVerified = Objects.nonNull(phoneNumberVerified) ? phoneNumberVerified : Boolean.FALSE;
+        this.enabled = Objects.nonNull(enabled) ? enabled : Boolean.FALSE;
+        this.accLocked = Objects.nonNull(accLocked) ? accLocked : Boolean.FALSE;
+        this.accExpired = Objects.nonNull(accExpired) ? accExpired : Boolean.FALSE;
+        this.credsExpired = Objects.nonNull(credsExpired) ? credsExpired : Boolean.FALSE;
+        this.roles = roles;
+        this.groups = groups;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -141,4 +174,29 @@ public class User extends AbstractPersistable<String, Long> {
                 ", lastModifiedDate=" + lastModifiedDate +
                 '}';
     }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = Objects.nonNull(emailVerified) ? emailVerified : Boolean.FALSE;
+    }
+
+    public void setPhoneNumberVerified(Boolean phoneNumberVerified) {
+        this.phoneNumberVerified = Objects.nonNull(phoneNumberVerified) ? phoneNumberVerified : Boolean.FALSE;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = Objects.nonNull(enabled) ? enabled : Boolean.FALSE;
+    }
+
+    public void setAccLocked(Boolean accLocked) {
+        this.accLocked = Objects.nonNull(accLocked) ? accLocked : Boolean.FALSE;
+    }
+
+    public void setAccExpired(Boolean accExpired) {
+        this.accExpired = Objects.nonNull(accExpired) ? accExpired : Boolean.FALSE;
+    }
+
+    public void setCredsExpired(Boolean credsExpired) {
+        this.credsExpired = Objects.nonNull(credsExpired) ? accExpired : Boolean.FALSE;
+    }
+
 }

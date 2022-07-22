@@ -1,6 +1,8 @@
 package io.github.tuyendev.passport.utils;
 
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class PasswordUtil {
 
@@ -23,5 +25,11 @@ public final class PasswordUtil {
             password[i] = combinedChars.charAt(RANDOM.nextInt(combinedChars.length()));
         }
         return password;
+    }
+
+    public static boolean isPasswordMatched(String password, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
     }
 }

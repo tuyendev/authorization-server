@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${param.error}">
-                        <p th:text="#{app.signin.views.exception.user-password-wrong}">Username and password must be
+                        <p th:text="#{app.signin.views.message.user-password-wrong}">Username and password must be
                             correct</p>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
                     </div>
@@ -78,12 +78,17 @@
 
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
                     </div>
-                    <p class="login-box-msg"></p>
+                    <div class="alert alert-info alert-dismissible fade show" role="alert"
+                         th:if="${param.register}">
+                        <p th:text="#{app.signin.views.message.register}">Success register the new account.</p>
+
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
+                    </div>
                     <form method="post" th:action="@{/login}">
                         <div class="form-floating mb-3">
                             <input class="form-control" id="input-email" name="username"
                                    placeholder="yourmail@sample.com"
-                                   required type="text">
+                                   required type="email">
                             <label for="input-email" th:text="#{app.signin.views.label.username}">Username</label>
                         </div>
                         <div class="form-floating mb-3">

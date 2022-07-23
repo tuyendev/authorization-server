@@ -309,8 +309,7 @@
     <div class="content">
         <h2 class="title" data-l10n th:text="${title}">Bad Request</h2>
         <p data-l10n th:text="${message}">The server did not understand the request</p>
-        <p class="if-maybe-wrong-uri"><a class="go-back hidden" data-l10n>Alternatively,
-            go back</a></p>
+        <p class="if-maybe-wrong-uri"><a class="go-back hidden" data-l10n><span th:text="#{app.common.text.goback}">Alternatively, go back</span></a></p>
 
     </div>
     <div class="picture">

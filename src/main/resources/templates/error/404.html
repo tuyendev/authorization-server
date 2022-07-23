@@ -309,8 +309,8 @@
     <div class="content">
         <h2 class="title" data-l10n th:text="${title}">Not Found</h2>
         <p data-l10n th:text="${message}">The server can not find the requested page</p>
-        <p class="if-maybe-wrong-uri"><span data-l10n>Double-check the URL</span>. <a class="go-back hidden" data-l10n>Alternatively,
-            go back</a></p>
+        <p class="if-maybe-wrong-uri"><a class="go-back hidden" data-l10n><span th:text="#{app.common.text.goback}">Alternatively, go back</span></a></p>
+
 
     </div>
     <div class="picture">

@@ -3,12 +3,12 @@
     Error 400: Bad Request
     Description: The server did not understand the request
 -->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <meta content="noindex, nofollow" name="robots"/>
-    <title>Bad Request</title>
+    <title th:text="${title}">Bad Request</title>
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
@@ -307,17 +307,9 @@
 <body>
 <main>
     <div class="content">
-        <h2 class="title" data-l10n>Bad Request</h2>
-        <p data-l10n>The server did not understand the request</p>
-        <div class="subtitle if-not-found hidden">
-            <p><span data-l10n>Here's what might have happened</span>:</p>
-            <ul>
-                <li data-l10n>You may have mistyped the URL</li>
-                <li data-l10n>The site was moved</li>
-                <li data-l10n>It was never here</li>
-            </ul>
-        </div>
-        <p class="if-maybe-wrong-uri"><span data-l10n>Double-check the URL</span>. <a class="go-back hidden" data-l10n>Alternatively,
+        <h2 class="title" data-l10n th:text="${title}">Bad Request</h2>
+        <p data-l10n th:text="${message}">The server did not understand the request</p>
+        <p class="if-maybe-wrong-uri"><a class="go-back hidden" data-l10n>Alternatively,
             go back</a></p>
 
     </div>

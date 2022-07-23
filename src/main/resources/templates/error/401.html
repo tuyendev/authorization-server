@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <meta content="noindex, nofollow" name="robots"/>
-    <title>Unauthorized</title>
+    <title th:text="${title}">Unauthorized</title>
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
@@ -307,16 +307,8 @@
 <body>
 <main>
     <div class="content">
-        <h2 class="title" data-l10n>Unauthorized</h2>
-        <p data-l10n>The requested page needs a username and a password</p>
-        <div class="subtitle if-not-found hidden">
-            <p><span data-l10n>Here's what might have happened</span>:</p>
-            <ul>
-                <li data-l10n>You may have mistyped the URL</li>
-                <li data-l10n>The site was moved</li>
-                <li data-l10n>It was never here</li>
-            </ul>
-        </div>
+        <h2 class="title" data-l10n th:text="${title}">Unauthorized</h2>
+        <p data-l10n th:text="${message}">The requested page needs a username and a password</p>
         <p class="if-maybe-wrong-uri"><span data-l10n>Double-check the URL</span>. <a class="go-back hidden" data-l10n>Alternatively,
             go back</a></p>
 

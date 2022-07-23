@@ -42,7 +42,7 @@ public class Response<T> implements Serializable {
         return Response.builder()
                 .status(HttpStatus.OK.value())
                 .metadata(Metadata.successBlock())
-                .payload(Map.of("message", val("app.common.success"))).build();
+                .payload(Map.of("message", val("app.common.message.success"))).build();
     }
 
     public static <T> Response ok(T payload) {
@@ -81,7 +81,7 @@ public class Response<T> implements Serializable {
     }
 
     public static Response failed(ServletException e) {
-        return Response.builder().status(HttpStatus.BAD_REQUEST.value())
+        return Response.builder().status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .metadata(Metadata.errorBlock(e))
                 .payload(ErrorContent.build("app.common.exception.servlet"))
                 .build();
@@ -94,7 +94,7 @@ public class Response<T> implements Serializable {
                 .build();
     }
 
-    private static String getAuthenticationMessage(AuthenticationException e) {
+    public static String getAuthenticationMessage(AuthenticationException e) {
         if (e instanceof InsufficientAuthenticationException) {
             return "app.common.exception.authentication.insufficient";
         }
